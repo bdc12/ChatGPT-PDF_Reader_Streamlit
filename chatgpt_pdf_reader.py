@@ -1,5 +1,5 @@
 import PyPDF2
-import openai
+from openai import OpenAI
 import streamlit as st
 import uuid
 
@@ -7,7 +7,9 @@ import uuid
 api_key = st.text_input("Enter your OpenAI API key:")
 
 # Set up the OpenAI API with the provided API key
-openai.api_key = api_key
+client = OpenAI(
+  api_key=os.environ[api_key],  # this is also the default, it can be omitted
+)
 
 # Define a function to extract text from a PDF file
 def extract_text_from_pdf(file):
