@@ -26,7 +26,7 @@ def generate_answer(question, text):
 
     prompt = f"{truncated_text}\n\nQuestion: {question}\nAnswer:"
     response = openai.Completion.create(
-        engine="text-davinci-002",
+        model="gpt-3.5-turbo",
         prompt=prompt,
         max_tokens=1024,
         n=1,
