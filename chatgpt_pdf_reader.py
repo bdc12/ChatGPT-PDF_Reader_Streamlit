@@ -1,5 +1,5 @@
 import PyPDF2
-import openai
+#import openai
 from openai import OpenAI
 import streamlit as st
 import uuid
@@ -24,10 +24,7 @@ def extract_text_from_pdf(file):
 
 # Define a function to generate answers to user questions using the ChatGPT API
 def generate_answer(question, text):
-    max_context_length = 4096 - len(question) - 30
-    truncated_text = text[:max_context_length]
-
-    prompt = f"{truncated_text}\n\nQuestion: {question}\nAnswer:"
+    prompt = f"{text}\n\nQuestion: {question}\nAnswer:"
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[{"role": "system", "content": prompt}]
