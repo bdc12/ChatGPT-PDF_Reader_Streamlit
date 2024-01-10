@@ -28,13 +28,9 @@ def generate_answer(question, text):
     truncated_text = text[:max_context_length]
 
     prompt = f"{truncated_text}\n\nQuestion: {question}\nAnswer:"
-    response = client.completions.create(
+    response = client.chat.completions.create(
         model="gpt-3.5-turbo",
-        prompt=prompt,
-        max_tokens=1024,
-        n=1,
-        stop=None,
-        temperature=0.7,
+        messages=[{"role": "system", "content": prompt}]
     )
     answer = response.choices[0].text.strip()
     return answer
@@ -49,14 +45,6 @@ def handle_file_upload():
         if st.button("Submit"):
             answer = generate_answer(question, text)
             st.write(answer)
-
-        '''while True:
-            question = st.text_input("Enter a question (type 'exit' to end):", key= uuid.uuid1())
-            if question.lower() == "exit":
-                break
-            answer = generate_answer(question, text)
-            st.write(answer)
-            '''
         
 # Define a main function to run the program
 def main():
