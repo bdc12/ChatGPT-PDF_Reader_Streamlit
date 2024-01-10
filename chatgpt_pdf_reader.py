@@ -8,7 +8,7 @@ api_key = st.text_input("Enter your OpenAI API key:")
 
 # Set up the OpenAI API with the provided API key
 client = OpenAI(
-  api_key=os.environ[api_key],  # this is also the default, it can be omitted
+  api_key = os.environ[api_key],  # this is also the default, it can be omitted
 )
 
 # Define a function to extract text from a PDF file
